@@ -1,0 +1,43 @@
+<!DOCTYPE HTML>
+<html lang="en" ng-app="blogApp">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-sanitize.js"></script>
+    <script src="app.js"></script>
+    <title>Dan Palmer's Mean Blog</title>
+</head>
+<style>
+    .form-control {
+        margin: 15px 0 15px 0;
+    }
+</style>
+
+<body>
+    <div class="container" ng-controller="blogController">
+        <div class="col-md-6 col-md-offset-3">
+            <h1>DP's Blog</h1>
+            <input ng-model="post.title" class="form-control" placeholder="Title">
+            <textarea ng-model="post.body" class="form-control" placeholder="Body"></textarea>
+            <button type="submit" class="btn btn-primary btn-block" ng-click="createPost(post)">Post</button>
+            <button type="submit" class="btn btn-success btn-block" ng-click="updatePost(post)">Update</button>
+
+            <div class="" ng-repeat="post in posts.data|orderBy:'-posted'">
+                <h2>{{post.title}}
+                    <a class="pull-right" ng-click="deletePost(post._id)"><span class="glyphicon glyphicon-remove"></span></a>
+                    <a ng-click="editPost(post._id)" class="pull-right"><span class="glyphicon glyphicon-pencil" </span></a>
+                </h2>
+                <em>{{post.posted}}</em>
+                <p>
+                    {{post.body}}
+                </p>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
